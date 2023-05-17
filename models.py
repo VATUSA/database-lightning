@@ -16,7 +16,7 @@ class AcademyCourse(ormar.Model):
     is_auto_enroll: bool = ormar.Boolean()
     # is_auto_enroll is used to hide the 'Enroll' button for courses that use a moodle method (like cohort) to enroll
     allow_mentor_enroll: bool = ormar.Boolean()
-    mentor_enroll_required_rating: int = ormar.Boolean()
+    mentor_enroll_required_rating: int = ormar.Integer()
 
 
 class AcademyCourseEnrollment(ormar.Model):
@@ -34,9 +34,11 @@ class AcademyExam(ormar.Model):
     class Meta(BaseMeta):
         tablename = 'academy_exam'
     id: int = ormar.Integer(primary_key=True)
+    course: AcademyCourse = ormar.ForeignKey(AcademyCourse)
     facility: str = ormar.String(max_length=4)
     mdl_quiz_id: int = ormar.Integer()
     name: str = ormar.String(max_length=240)
+    is_enabled: bool = ormar.Boolean()
 
 
 class AcademyExamResult(ormar.Model):
