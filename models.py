@@ -12,11 +12,12 @@ class AcademyCourse(ormar.Model):
     facility: str = ormar.String(max_length=4)
     mdl_course_id: int = ormar.Integer()
     name: str = ormar.String(max_length=240)
-    allow_self_enroll: bool = ormar.Boolean()
-    is_auto_enroll: bool = ormar.Boolean()
+    display_grade_on_profile: bool = ormar.Boolean(default=False)
+    allow_self_enroll: bool = ormar.Boolean(default=False)
+    is_auto_enroll: bool = ormar.Boolean(default=False)
     # is_auto_enroll is used to hide the 'Enroll' button for courses that use a moodle method (like cohort) to enroll
-    allow_mentor_enroll: bool = ormar.Boolean()
-    mentor_enroll_required_rating: int = ormar.Integer()
+    allow_mentor_enroll: bool = ormar.Boolean(default=False)
+    mentor_enroll_required_rating: int = ormar.Integer(nullable=True, default=None)
 
 
 class AcademyCourseEnrollment(ormar.Model):
